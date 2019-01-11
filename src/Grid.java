@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class Grid {
 
-	// static Output output;
+	//static Output output;
 	Node grid [][] = new Node[9][9];
 	int	numSet;
 	int	indent;
@@ -16,7 +16,9 @@ public class Grid {
 	}
 	
 	Boolean setVal(int val, Position location, String reason){
-		
+
+		Output output = new Output();
+
 		try{
 			// Calculating the comment indentation
 			StringBuffer indentBuffer = new StringBuffer();
@@ -27,24 +29,24 @@ public class Grid {
 			}
 
             if(val < 1 || val > 9){
-                Output.add(indentBuffer.toString() + "Invalid value " + val);
+                System.out.println(indentBuffer.toString() + "Invalid value " + val);
                 return(false);
             }
 
 			if(location.row < 1 || location.row > 9){
-				Output.add(indentBuffer.toString() + "Invalid row " + location.row);
+				System.out.println(indentBuffer.toString() + "Invalid row " + location.row);
 				return(false);
 			}
 			
 			if(location.column < 1 || location.column > 9){
-				Output.add(indentBuffer.toString() + "Invalid column " + location.column);
+				System.out.println(indentBuffer.toString() + "Invalid column " + location.column);
 				return(false);
 			}
 			
             Node nodeToSet = grid[location.row - 1][location.column - 1];
 
 			if(nodeToSet.getValue() != 0){
-				Output.add(indentBuffer.toString() + location.row + ":" + location.column + " already set");
+				System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set");
 				return(false);
 			}
 	
@@ -52,7 +54,7 @@ public class Grid {
 			LinkedList<Node> rowList = getOtherNodesInRow(location);
 			for (Node n : rowList){
 				if(val == n.value){
-					Output.add(indentBuffer.toString() + val + " is already in row " + location.row);
+					System.out.println(indentBuffer.toString() + val + " is already in row " + location.row);
 					return(false);
 				}
 			}
@@ -61,7 +63,7 @@ public class Grid {
 			LinkedList<Node> columnList = getOtherNodesInColumn(location);
 			for (Node n : columnList){
 				if(val == n.value){
-					Output.add(indentBuffer.toString() + val + " is already in column " + location.column);
+					System.out.println(indentBuffer.toString() + val + " is already in column " + location.column);
 					return(false);
 				}
 			}
@@ -70,7 +72,7 @@ public class Grid {
 			LinkedList<Node> blockList = getOtherNodesInBlock(location);
 			for (Node n : blockList){
 				if(val == n.value){
-					Output.add(indentBuffer.toString() + val + " is already in block around " + location.toString());
+					System.out.println(indentBuffer.toString() + val + " is already in block around " + location.toString());
 					return(false);
 				}
 			}
@@ -78,19 +80,19 @@ public class Grid {
 			// OK - set the Node to value val
 			LinkedList<Integer> possibleValues = nodeToSet.setValue(val);
 			if(possibleValues == null){
-				Output.add(indentBuffer.toString() + "Error setting value already set at " + location.toString());			
+				System.out.println(indentBuffer.toString() + "Error setting value already set at " + location.toString());
 				return(false);
 			}
 	
 			if (reason == null)
-				Output.add(indentBuffer.toString() + "set " + val + " at " + location.toString());
+				System.out.println(indentBuffer.toString() + "set " + val + " at " + location.toString());
 			else
-				Output.add(indentBuffer.toString() + "set " + val + " at " + location.toString() + " by strategy " + reason);
+				System.out.println(indentBuffer.toString() + "set " + val + " at " + location.toString() + " by strategy " + reason);
 	
 			indent++;
 			numSet++;
 			if(numSet >= 81){
-				Output.add("!!! ALL DONE - WELL DONE !!!");
+				System.out.println("!!! ALL DONE - WELL DONE !!!");
 				return(true);
 			}
 			
@@ -239,7 +241,7 @@ public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition
 		for(int row = 1; row <= 9; row++){
 			for(int col = 1; col <= 9; col++){
 				Node node = grid[row - 1][col - 1];
-				Output.add(node.position.toString() + " | " + node.toString() + " | " + node.possibleValuesToString());
+				System.out.println(node.position.toString() + " | " + node.toString() + " | " + node.possibleValuesToString());
 			}		
 		}
 	}

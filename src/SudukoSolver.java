@@ -6,11 +6,18 @@ import java.io.FileInputStream;
 
 public class SudukoSolver {
 
-	static Output output = new Output();
+	//static Output output = new Output();
 	static Grid grid = new Grid();
 	
 	public static void main(String[] args) {
-			
+
+		SudukoSolver processor = new SudukoSolver();
+
+		processor.process();
+
+	}
+
+	void process(){
 		String curLine; // = ""; // Line read from standard in
 
 		InputStreamReader converter = new InputStreamReader(System.in);
@@ -21,10 +28,7 @@ public class SudukoSolver {
 		
 		for(;;){
 			try {
-				grid.display();	
 				System.out.print("\n");
-				Output.display();
-				Output.clear();
 				System.out.print(">");
 				
 				curLine = in.readLine();
@@ -41,30 +45,38 @@ public class SudukoSolver {
 				}
 				
 				if (command.equals("h") || command.equals("help")){
-					Output.add("(h)elp");
-					Output.add("(l)oad filename");
-					Output.add("(s)et val r:c, val2 r2:c2, ...");
-					Output.add("(r)ow r:456 9  12");
-					Output.add("(c)lear");
-					Output.add("(d)ump");
-					Output.add("(q)uit");
+					System.out.println("(h)elp");
+					System.out.println("(l)oad filename");
+					System.out.println("(s)et val r:c, val2 r2:c2, ...");
+					System.out.println("(r)ow r:456 9  12");
+					System.out.println("(c)lear");
+					System.out.println("(d)ump");
+					System.out.println("(q)uit");
 					continue;
 				}
 
 				else if (command.equals("s") || command.equals("set")){
-					processSetCommand(parameters);
+					if (processSetCommand(parameters)) {
+						grid.display();
+					}
 				}
 
 				else if (command.equals("c") || command.equals("clear")){
-					processClearCommand(parameters);
+					if (processClearCommand(parameters)) {
+						grid.display();
+					}
 				}
 				
 				else if (command.equals("l") || command.equals("load")){
-					processLoadCommand(parameters);
+					if (processLoadCommand(parameters)) {
+						grid.display();
+					}
 				}
 
 				else if (command.equals("r") || command.equals("row")){
-					processRowCommand(parameters);
+					if (processRowCommand(parameters)) {
+						grid.display();
+					}
 				}
 
 				else if (command.equals("d") || command.equals("dump")){
@@ -72,23 +84,23 @@ public class SudukoSolver {
 				}
 
 				else if (command.equals(""))
-					;
-				
+					grid.display();
+
 				else if (command.equals("q") || command.equals("quit")){
 					System.out.println("Good Bye");
 					return;					
 				}
 				
 				else
-					Output.add("Unknown command \"" + command + "\"");
+					System.out.println("Unknown command \"" + command + "\"");
 			}
 			catch (Exception e){
-				Output.add("Some other error");
+				System.out.println("Some other error");
 			}
 		}
 	}
 
-	static void processSetCommand(String params){
+	 boolean processSetCommand(String params){
 		
 		try {
 			String [] paramList = params.split(",");
@@ -104,11 +116,13 @@ public class SudukoSolver {
 			}
 		}
 		catch (Exception e){
-			Output.add("Error setting value");
+			System.out.println("Error setting value");
+			return(false);
 		}
+		return(true);
 	}
 
-	static void processLoadCommand(String params){
+	 boolean processLoadCommand(String params){
 		
 		try {
 		
@@ -139,10 +153,12 @@ public class SudukoSolver {
 		}
 	    catch (Exception e){
 	        System.err.println("Error: " + e.getMessage());
+	        return(false);
 		}
+		return(true);
 	}
 
-	static void processRowCommand(String args){
+	boolean processRowCommand(String args){
 
 		System.out.println(args);
 
@@ -155,7 +171,6 @@ public class SudukoSolver {
 			}
 
 			int len = str.length() - 2;
-
 			int row = Character.digit(str.charAt(0), 10);
 
 			for (int col = 1; col <= len; col++) {
@@ -168,12 +183,14 @@ public class SudukoSolver {
 		}
 		catch (Exception e){
 			System.err.println("Error: " + e.getMessage());
+			return(false);
 		}
 
-
+		return(true);
 	}
 
-	static void processClearCommand(String param){
+	boolean processClearCommand(String param){
 		grid = new Grid();
+		return(true);
 	}
 }
