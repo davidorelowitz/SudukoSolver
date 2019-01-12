@@ -55,20 +55,20 @@ public class Strategy {
 		return(true);
 	}
 	
-//	////////////////////////////////////////////////////////////////////////////////////////////
-//	//
-//	//	UniquePossibleValue
-//	//
-//	//	Traverses all rows, columns and blocks to determine if there exists a unique possible
-//	//  number.
-//	//
-//	//  If so, it sets that node to the unique number.
-//	//
-//	//	This not the most optimum algorithm. It searches the whole grid each time. It could
-//	//  be optimized to search only nodes that are affectd by the setVal.
-//	//
-//	//  It is called recursively on Grid.setVal
-//    //
+	////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	UniquePossibleValue
+	//
+	//	Traverses all rows, columns and blocks to determine if there exists a unique possible
+	//  number.
+	//
+	//  If so, it sets that node to the unique number.
+	//
+	//	This not the most optimum algorithm. It searches the whole grid each time. It could
+	//  be optimized to search only nodes that are affectd by the setVal.
+	//
+	//  It is called recursively on Grid.setVal
+    //
 //
 //
 //	static Boolean UniquePossibleValue(Node node, Grid grid){
