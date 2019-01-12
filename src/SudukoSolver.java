@@ -6,15 +6,11 @@ import java.io.FileInputStream;
 
 public class SudukoSolver {
 
-	//static Output output = new Output();
-	static Grid grid = new Grid();
+	Grid grid = new Grid();
 	
 	public static void main(String[] args) {
-
 		SudukoSolver processor = new SudukoSolver();
-
 		processor.process();
-
 	}
 
 	private void process(){

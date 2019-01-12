@@ -38,12 +38,11 @@ public class Node {
 	
 	public Boolean removePossibleValue(int val){
 		if(value == 0){ // Node not set
-			//Integer intVal = new Integer(val);
-			if(possibleValues.contains(val)){
-				possibleValues.remove(val);
-				return(true);
+			int index;
+			if ((index = possibleValues.indexOf(val)) != -1) {
+				possibleValues.remove(index);
+				return (true);
 			}
-			return(false);
 		}
 		return(false);
 	}
@@ -74,5 +73,4 @@ public class Node {
         }
 		return(str.toString());
 	}
-	
 }

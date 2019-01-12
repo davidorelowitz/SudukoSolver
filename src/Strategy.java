@@ -23,7 +23,7 @@ public class Strategy {
 			if(n.value == 0){  // Value not set
 				if(n.removePossibleValue(node.value)){
 					if(n.getPossibleValues().size() == 1){
-						grid.setVal(n.getPossibleValues().get(0), n.position, "EP");
+						grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - row");
 					}
 				}
 			}
@@ -35,7 +35,7 @@ public class Strategy {
             if(n.value == 0){  // Value not set
                 if(n.removePossibleValue(node.value)){
                     if(n.getPossibleValues().size() == 1){
-                        grid.setVal(n.getPossibleValues().get(0), n.position, "EP");
+                        grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - column");
                     }
                 }
             }
@@ -47,7 +47,7 @@ public class Strategy {
             if(n.value == 0){  // Value not set
                 if(n.removePossibleValue(node.value)){
                     if(n.getPossibleValues().size() == 1){
-                        grid.setVal(n.getPossibleValues().get(0), n.position, "EP");
+                        grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - block");
                     }
                 }
             }
@@ -55,75 +55,75 @@ public class Strategy {
 		return(true);
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	//	UniquePossibleValue
-	//	
-	//	Traverses all rows, columns and blocks to determine if there exists a unique possible
-	//  number.
-	//
-	//  If so, it sets that node to the unique number.
-	//
-	//	This not the most optimum algorithm. It searches the whole grid each time. It could
-	//  be optimized to search only nodes that are affectd by the setVal.
-	//
-	//  It is called recursively on Grid.setVal
-    //
-
-
-	static Boolean UniquePossibleValue(Node node, Grid grid){
-		
-		// Looks for unique possible values in the row
-		for( int row = 1; row <= 9; row++){
-			LinkedList<Node> rowNodeList = grid.getAllNodesInRow(new Position(row, 1));
-			processUniqueNodesInList(rowNodeList, grid);
-		}
-	
-		// Looks for unique possible values in the column
-		for( int column = 1; column <= 9; column++){
-			LinkedList<Node> columnNodeList = grid.getAllNodesInColumn(new Position(1, column));
-			processUniqueNodesInList(columnNodeList, grid);
-		}
-
-		// Looks for unique possible values in the block
-		for( int blockRow = 1; blockRow <= 3; blockRow++){
-			for( int blockColumn = 1; blockColumn <= 3; blockColumn++){
-				LinkedList<Node> blockNodeList = grid.getAllNodesInBlockFromBlockPosition(blockRow, blockColumn);
-				processUniqueNodesInList(blockNodeList, grid);
-			}
-		}
-		return(true);
-	}
-		
-		
-	static private Boolean processUniqueNodesInList(LinkedList<Node> nodeList, Grid grid){		
-		
-		for (int val = 1; val <= 9; val++){
-			Node nodeWithUniqueValue = null;
-			Integer valToFind = val;
-			
-			for (Node n : nodeList){
-				if(n.value == val){ // Value already set in a node, cannot be in any possible list
-					nodeWithUniqueValue = null;
-					break;
-				}
-				if(n.possibleValues.contains(valToFind)){ // Node contains the value on its possible List
-					if(nodeWithUniqueValue != null){ // Has already found this value
-						nodeWithUniqueValue = null;
-						break;
-					}
-					else
-						nodeWithUniqueValue = n; // Node contains value in possible list
-				}
-			}
-
-			// If there is only a single node with this value on the possible list
-			//	   - set the node value to this value
-			if(nodeWithUniqueValue != null)
-				grid.setVal(val, nodeWithUniqueValue.position, "UV");
-
-		}
-		return(true);
-	}
+//	////////////////////////////////////////////////////////////////////////////////////////////
+//	//
+//	//	UniquePossibleValue
+//	//
+//	//	Traverses all rows, columns and blocks to determine if there exists a unique possible
+//	//  number.
+//	//
+//	//  If so, it sets that node to the unique number.
+//	//
+//	//	This not the most optimum algorithm. It searches the whole grid each time. It could
+//	//  be optimized to search only nodes that are affectd by the setVal.
+//	//
+//	//  It is called recursively on Grid.setVal
+//    //
+//
+//
+//	static Boolean UniquePossibleValue(Node node, Grid grid){
+//
+//		// Looks for unique possible values in the row
+//		for( int row = 1; row <= 9; row++){
+//			LinkedList<Node> rowNodeList = grid.getAllNodesInRow(new Position(row, 1));
+//			processUniqueNodesInList(rowNodeList, grid);
+//		}
+//
+//		// Looks for unique possible values in the column
+//		for( int column = 1; column <= 9; column++){
+//			LinkedList<Node> columnNodeList = grid.getAllNodesInColumn(new Position(1, column));
+//			processUniqueNodesInList(columnNodeList, grid);
+//		}
+//
+//		// Looks for unique possible values in the block
+//		for( int blockRow = 1; blockRow <= 3; blockRow++){
+//			for( int blockColumn = 1; blockColumn <= 3; blockColumn++){
+//				LinkedList<Node> blockNodeList = grid.getAllNodesInBlockFromBlockPosition(blockRow, blockColumn);
+//				processUniqueNodesInList(blockNodeList, grid);
+//			}
+//		}
+//		return(true);
+//	}
+//
+//
+//	static private Boolean processUniqueNodesInList(LinkedList<Node> nodeList, Grid grid){
+//
+//		for (int val = 1; val <= 9; val++){
+//			Node nodeWithUniqueValue = null;
+//			Integer valToFind = val;
+//
+//			for (Node n : nodeList){
+//				if(n.value == val){ // Value already set in a node, cannot be in any possible list
+//					nodeWithUniqueValue = null;
+//					break;
+//				}
+//				if(n.possibleValues.contains(valToFind)){ // Node contains the value on its possible List
+//					if(nodeWithUniqueValue != null){ // Has already found this value
+//						nodeWithUniqueValue = null;
+//						break;
+//					}
+//					else
+//						nodeWithUniqueValue = n; // Node contains value in possible list
+//				}
+//			}
+//
+//			// If there is only a single node with this value on the possible list
+//			//	   - set the node value to this value
+//			if(nodeWithUniqueValue != null)
+//				grid.setVal(val, nodeWithUniqueValue.position, "UV");
+//
+//		}
+//		return(true);
+//	}
 }
 				
