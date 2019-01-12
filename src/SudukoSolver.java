@@ -17,7 +17,7 @@ public class SudukoSolver {
 
 	}
 
-	void process(){
+	private void process(){
 		String curLine; // = ""; // Line read from standard in
 
 		InputStreamReader converter = new InputStreamReader(System.in);
@@ -52,7 +52,6 @@ public class SudukoSolver {
 					System.out.println("(c)lear");
 					System.out.println("(d)ump");
 					System.out.println("(q)uit");
-					continue;
 				}
 
 				else if (command.equals("s") || command.equals("set")){
@@ -62,7 +61,7 @@ public class SudukoSolver {
 				}
 
 				else if (command.equals("c") || command.equals("clear")){
-					if (processClearCommand(parameters)) {
+					if (processClearCommand()) {
 						grid.display();
 					}
 				}
@@ -100,7 +99,7 @@ public class SudukoSolver {
 		}
 	}
 
-	 boolean processSetCommand(String params){
+	 private boolean processSetCommand(String params){
 		
 		try {
 			String [] paramList = params.split(",");
@@ -108,9 +107,9 @@ public class SudukoSolver {
 			for (String param : paramList){
 				param = param.trim();
 				String [] vals = param.split("[ :]");
-				Integer val = new Integer(vals[0]);
-				Integer row = new Integer(vals[1]);
-				Integer col = new Integer(vals[2]);
+				int val = Integer.parseInt(vals[0]);
+				int row = Integer.parseInt(vals[1]);
+				int col = Integer.parseInt(vals[2]);
 				
 				grid.setVal(val, new Position(row, col), null);
 			}
@@ -122,7 +121,7 @@ public class SudukoSolver {
 		return(true);
 	}
 
-	 boolean processLoadCommand(String params){
+	 private boolean processLoadCommand(String params){
 		
 		try {
 		
@@ -158,13 +157,13 @@ public class SudukoSolver {
 		return(true);
 	}
 
-	boolean processRowCommand(String args){
+	private boolean processRowCommand(String args){
 
 		System.out.println(args);
 
 		try {
 
-			StringBuffer str = new StringBuffer(args);
+			StringBuilder str = new StringBuilder(args);
 
 			if (str.length() < 3 || str.length() > 11 || str.charAt(1) != ':') {
 				throw new Exception("Command should be in format r(ow) x:xy..");
@@ -189,7 +188,7 @@ public class SudukoSolver {
 		return(true);
 	}
 
-	boolean processClearCommand(String param){
+	private boolean processClearCommand(){
 		grid = new Grid();
 		return(true);
 	}

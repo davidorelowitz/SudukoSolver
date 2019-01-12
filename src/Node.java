@@ -5,7 +5,7 @@ public class Node {
 
 	int 					value;
 	Position				position;
-	LinkedList<Integer>  	possibleValues  = new LinkedList<Integer>();
+	LinkedList<Integer>  	possibleValues  = new LinkedList<>();
 	
 	
 	public Node(Position location){
@@ -38,9 +38,9 @@ public class Node {
 	
 	public Boolean removePossibleValue(int val){
 		if(value == 0){ // Node not set
-			Integer intVal = new Integer(val);
-			if(possibleValues.contains(intVal)){
-				possibleValues.remove(intVal);
+			//Integer intVal = new Integer(val);
+			if(possibleValues.contains(val)){
+				possibleValues.remove(val);
 				return(true);
 			}
 			return(false);
@@ -49,7 +49,7 @@ public class Node {
 	}
 
 	public Boolean canHaveValue(int val){
-		return(possibleValues.contains(new Integer(val)));
+		return(possibleValues.contains(val));
 	}
 	
 	public Position getPosition(){
@@ -64,11 +64,12 @@ public class Node {
 	}
 	
 	public String possibleValuesToString(){
-		StringBuffer	str = new StringBuffer();
+		StringBuilder	str = new StringBuilder();
 
         if (possibleValues != null){
             for (Integer val : possibleValues){
-                str.append(val.toString() + " ");
+                str.append(val);
+                str.append(" ");
             }
         }
 		return(str.toString());

@@ -17,11 +17,9 @@ public class Grid {
 	
 	Boolean setVal(int val, Position location, String reason){
 
-		Output output = new Output();
-
 		try{
 			// Calculating the comment indentation
-			StringBuffer indentBuffer = new StringBuffer();
+			StringBuilder indentBuffer = new StringBuilder();
 			int tempIndent = indent;
 			while(tempIndent > 0){
 				indentBuffer.append("-");
@@ -150,7 +148,7 @@ public class Grid {
 
 public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition, int blockColumnPosition){
 
-    if (blockRowPosition < 1 || blockColumnPosition > 3)
+    if (blockRowPosition < 1 || blockRowPosition > 3)
         return(null);
 
     if(blockColumnPosition < 1 || blockColumnPosition > 3)
@@ -172,7 +170,7 @@ public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition
 
 	private LinkedList<Node> getNodesInRow(Position pos, boolean excludeSelf){
 		
-		LinkedList<Node> rowList = new LinkedList<Node>();
+		LinkedList<Node> rowList = new LinkedList<>();
 		for(int i = 1; i <= 9; i++) {
 			if (excludeSelf && pos.column == i){
                 continue;
@@ -184,7 +182,7 @@ public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition
 	
 	private LinkedList<Node> getNodesInColumn(Position pos, boolean excludeSelf){
 		
-		LinkedList<Node> colList = new LinkedList<Node>();
+		LinkedList<Node> colList = new LinkedList<>();
 		for(int i = 1; i <= 9; i++){
             if (excludeSelf && pos.row == i){
                 continue;
@@ -206,7 +204,7 @@ public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition
         int startColumn = ((pos.column - 1) / 3) * 3 + 1;
         int endColumn = startColumn + 2;
 
-		LinkedList<Node> nodeList = new LinkedList<Node>();
+		LinkedList<Node> nodeList = new LinkedList<>();
 
 		for(int row = startRow; row <= endRow; row++){
 			for(int column = startColumn; column <= endColumn; column++) {
