@@ -5,21 +5,22 @@ import java.util.LinkedList;
 public class Grid {
 
     //static Output output;
-    Node    grid[][];
-    int	    numSet;
-    int	    indent;
+    private Node[][] grid;
+    private int numSet;
+    private int indent;
 
     public Grid() {
         grid = new Node[9][9];
-        for(int row = 1; row <= 9; row ++){
-            for(int col = 1; col <= 9; col++)
+        for (int row = 1; row <= 9; row++) {
+            for (int col = 1; col <= 9; col++) {
                 grid[row - 1][col - 1] = new Node(new Position(row, col));
+            }
         }
     }
 
-    boolean setVal(int val, Position location, String reason){
+    boolean setVal(int val, Position location, String reason) {
 
-        try{
+        try {
             // Calculating the comment indentation
             StringBuilder indentBuffer = new StringBuilder();
             int tempIndent = indent;

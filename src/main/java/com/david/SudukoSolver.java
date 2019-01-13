@@ -80,8 +80,10 @@ public class SudukoSolver {
                     grid.dump();
                 }
 
-                else if (command.equals(""))
+                else if (command.equals("")) {
                     grid.display();
+                    System.out.println(grid.dumpAsString());
+                }
 
                 else if (command.equals("q") || command.equals("quit")){
                     System.out.println("Good Bye");
