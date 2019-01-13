@@ -45,8 +45,13 @@ public class Grid {
 
             Node nodeToSet = grid[location.row - 1][location.column - 1];
 
+            if(nodeToSet.getValue() == val){
+                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to this value");
+                return(true);
+            }
+
             if(nodeToSet.getValue() != 0){
-                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set");
+                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to a different value");
                 return(false);
             }
 
