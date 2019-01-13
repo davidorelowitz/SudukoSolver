@@ -5,19 +5,19 @@ import java.util.LinkedList;
 public class Grid {
 
     //static Output output;
-    Node grid [][] = new Node[9][9];
-    int	numSet;
-    int	indent;
+    Node    grid[][];
+    int	    numSet;
+    int	    indent;
 
-    // Initialize all locations to zero
-    {
+    public Grid() {
+        grid = new Node[9][9];
         for(int row = 1; row <= 9; row ++){
             for(int col = 1; col <= 9; col++)
                 grid[row - 1][col - 1] = new Node(new Position(row, col));
         }
     }
 
-    Boolean setVal(int val, Position location, String reason){
+    boolean setVal(int val, Position location, String reason){
 
         try{
             // Calculating the comment indentation
@@ -45,8 +45,13 @@ public class Grid {
 
             Node nodeToSet = grid[location.row - 1][location.column - 1];
 
+            if(nodeToSet.getValue() == val){
+                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to this value");
+                return(true);
+            }
+
             if(nodeToSet.getValue() != 0){
-                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set");
+                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to a different value");
                 return(false);
             }
 
@@ -137,7 +142,6 @@ public class Grid {
         return(getNodesInColumn(pos, false));
     }
 
-
     public LinkedList<Node> getAllNodesInBlockFromBlockPosition(int blockRowPosition, int blockColumnPosition){
 
         if (blockRowPosition < 1 || blockRowPosition > 3)
@@ -153,7 +157,6 @@ public class Grid {
 
         return(getAllNodesInBlock(pos));
     }
-
 
     //public Position getBlock(Position location){
     //
@@ -246,5 +249,14 @@ public class Grid {
         }
     }
 
+    public String dumpAsString() {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                str.append(grid[i][j]);
+            }
+        }
+        return (str.toString());
+    }
 }
 
