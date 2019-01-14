@@ -2,6 +2,7 @@ package com.david;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,7 +20,6 @@ public class SudukoSolverTest
         GridHelper gridHelper= new GridHelper();
         String str = new String("123456789456789123");
         gridHelper.setGrid(str, grid);
-
         assertTrue( gridHelper.compareStringToGrid(str, grid) );
     }
 
@@ -44,4 +44,20 @@ public class SudukoSolverTest
         gridHelper.setGrid(str, grid);
         assertTrue( gridHelper.compareStringToGrid(strResult, grid) );
     }
+
+    @Test
+    public void computerGrid() {
+        System.out.println("\n*** Start of test - computerGrid");
+        Grid grid = new Grid();
+        GridHelper gridHelper= new GridHelper();
+        String str = new String(      "12       "+"9   3  8 "+"    8  26"+"   92 7  "+" 87      "+"   6  8  "+"7 5      "+"  4  5  3"+"     2 67");
+        String strResult = new String("128      "+"9 6 3  8 "+"  3 8  26"+"  192 7  "+" 87      "+"  26  8  "+"7 5      "+"  4  5  3"+"  9  2 67");
+        gridHelper.setGrid(str, grid);
+        assertTrue( gridHelper.compareStringToGrid(strResult, grid) );
+    }
+
+
+
+
+
 }
