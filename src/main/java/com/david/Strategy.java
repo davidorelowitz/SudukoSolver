@@ -20,36 +20,36 @@ public class Strategy {
 	static Boolean RemoveValueFromAllAffectedPossibileValueLists(Node node, Grid grid){
 		
 		// Remove value from possible Values in nodes in row
-		LinkedList<Node> rowListPossible = grid.getOtherNodesInRow(node.position);
+		LinkedList<Node> rowListPossible = grid.getOtherNodesInRow(node.getPosition());
 		for (Node n : rowListPossible){
-			if(n.value == 0){  // Value not set
-				if(n.removePossibleValue(node.value)){
+			if(n.getValue() == 0){  // Value not set
+				if(n.removePossibleValue(node.getValue())){
 					if(n.getPossibleValues().size() == 1){
-						grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - row");
+						grid.setVal(n.getPossibleValues().get(0), n.getPosition(), "Only Possible - row");
 					}
 				}
 			}
 		}
 
 		// Remove value from possible Values in nodes in column
-		LinkedList<Node> columnListPossible = grid.getOtherNodesInColumn(node.position);
+		LinkedList<Node> columnListPossible = grid.getOtherNodesInColumn(node.getPosition());
 		for (Node n : columnListPossible){
-            if(n.value == 0){  // Value not set
-                if(n.removePossibleValue(node.value)){
+            if(n.getValue() == 0){  // Value not set
+                if(n.removePossibleValue(node.getValue())){
                     if(n.getPossibleValues().size() == 1){
-                        grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - column");
+                        grid.setVal(n.getPossibleValues().get(0), n.getPosition(), "Only Possible - column");
                     }
                 }
             }
 		}
 		
 		// Remove value from possible Values in nodes in block
-		LinkedList<Node> blockListPossible = grid.getOtherNodesInBlock(node.position);
+		LinkedList<Node> blockListPossible = grid.getOtherNodesInBlock(node.getPosition());
 		for (Node n : blockListPossible){
-            if(n.value == 0){  // Value not set
-                if(n.removePossibleValue(node.value)){
+            if(n.getValue() == 0){  // Value not set
+                if(n.removePossibleValue(node.getValue())){
                     if(n.getPossibleValues().size() == 1){
-                        grid.setVal(n.getPossibleValues().get(0), n.position, "Only Possible - block");
+                        grid.setVal(n.getPossibleValues().get(0), n.getPosition(), "Only Possible - block");
                     }
                 }
             }
@@ -105,7 +105,7 @@ public class Strategy {
 //			Integer valToFind = val;
 //
 //			for (Node n : nodeList){
-//				if(n.value == val){ // Value already set in a node, cannot be in any possible list
+//				if(n.getValue() == val){ // Value already set in a node, cannot be in any possible list
 //					nodeWithUniqueValue = null;
 //					break;
 //				}
@@ -122,7 +122,7 @@ public class Strategy {
 //			// If there is only a single node with this value on the possible list
 //			//	   - set the node value to this value
 //			if(nodeWithUniqueValue != null)
-//				grid.setVal(val, nodeWithUniqueValue.position, "UV");
+//				grid.setVal(val, nodeWithUniqueValue.getPosition(), "UV");
 //
 //		}
 //		return(true);

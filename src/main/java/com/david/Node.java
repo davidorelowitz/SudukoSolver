@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 public class Node {
 
-	int 					value;
-	Position				position;
-	LinkedList<Integer>  	possibleValues  = new LinkedList<>();
+	private int 					value;
+	private Position				position;
+	private LinkedList<Integer>  	possibleValues  = new LinkedList<>();
 	
 	
 	public Node(Position location){
@@ -37,11 +37,10 @@ public class Node {
 		return(possibleValues);
 	}
 
-	
 	public Boolean removePossibleValue(int val){
 		if(value == 0){ // Node not set
-			int index;
-			if ((index = possibleValues.indexOf(val)) != -1) {
+			int index = possibleValues.indexOf(val);
+			if (index != -1) {
 				possibleValues.remove(index);
 				return (true);
 			}
@@ -49,9 +48,9 @@ public class Node {
 		return(false);
 	}
 
-	public Boolean canHaveValue(int val){
-		return(possibleValues.contains(val));
-	}
+//	public Boolean canHaveValue(int val){
+//		return(possibleValues.contains(val));
+//	}
 	
 	public Position getPosition(){
 		return(position);

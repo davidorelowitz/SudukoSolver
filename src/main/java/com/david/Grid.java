@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class Grid {
 
-    //static Output output;
     private Node[][] grid;
     private int numSet;
     private int indent;
@@ -34,33 +33,33 @@ public class Grid {
                 return(false);
             }
 
-            if(location.row < 1 || location.row > 9){
-                System.out.println(indentBuffer.toString() + "Invalid row " + location.row);
+            if(location.getRow() < 1 || location.getRow() > 9){
+                System.out.println(indentBuffer.toString() + "Invalid row " + location.getRow());
                 return(false);
             }
 
-            if(location.column < 1 || location.column > 9){
-                System.out.println(indentBuffer.toString() + "Invalid column " + location.column);
+            if(location.getColumn() < 1 || location.getColumn() > 9){
+                System.out.println(indentBuffer.toString() + "Invalid column " + location.getColumn());
                 return(false);
             }
 
-            Node nodeToSet = grid[location.row - 1][location.column - 1];
+            Node nodeToSet = grid[location.getRow() - 1][location.getColumn() - 1];
 
             if(nodeToSet.getValue() == val){
-                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to this value");
+                System.out.println(indentBuffer.toString() + location.getRow() + ":" + location.getColumn() + " already set to this value");
                 return(true);
             }
 
             if(nodeToSet.getValue() != 0){
-                System.out.println(indentBuffer.toString() + location.row + ":" + location.column + " already set to a different value");
+                System.out.println(indentBuffer.toString() + location.getRow() + ":" + location.getColumn() + " already set to a different value");
                 return(false);
             }
 
             // Is value in row
             LinkedList<Node> rowList = getOtherNodesInRow(location);
             for (Node n : rowList){
-                if(val == n.value){
-                    System.out.println(indentBuffer.toString() + val + " is already in row " + location.row);
+                if(val == n.getValue()){
+                    System.out.println(indentBuffer.toString() + val + " is already in row " + location.getRow());
                     return(false);
                 }
             }
@@ -68,8 +67,8 @@ public class Grid {
             // Is value in column
             LinkedList<Node> columnList = getOtherNodesInColumn(location);
             for (Node n : columnList){
-                if(val == n.value){
-                    System.out.println(indentBuffer.toString() + val + " is already in column " + location.column);
+                if(val == n.getValue()){
+                    System.out.println(indentBuffer.toString() + val + " is already in column " + location.getColumn());
                     return(false);
                 }
             }
@@ -77,7 +76,7 @@ public class Grid {
             // Is value in block
             LinkedList<Node> blockList = getOtherNodesInBlock(location);
             for (Node n : blockList){
-                if(val == n.value){
+                if(val == n.getValue()){
                     System.out.println(indentBuffer.toString() + val + " is already in block around " + location.toString());
                     return(false);
                 }
@@ -161,7 +160,7 @@ public class Grid {
 
     //public Position getBlock(Position location){
     //
-    //	return(new Position(((location.row - 1) / 3) + 1,((location.column - 1) / 3) + 1));
+    //	return(new Position(((location.getRow() - 1) / 3) + 1,((location.getColumn() - 1) / 3) + 1));
     //}
 
     public LinkedList<Node> getOtherNodesInColumn(Position pos){
@@ -178,10 +177,10 @@ public class Grid {
 
         LinkedList<Node> rowList = new LinkedList<>();
         for(int i = 1; i <= 9; i++) {
-            if (excludeSelf && pos.column == i){
+            if (excludeSelf && pos.getColumn() == i){
                 continue;
             }
-            rowList.add(grid[pos.row - 1][i - 1]);
+            rowList.add(grid[pos.getRow() - 1][i - 1]);
         }
         return(rowList);
     }
@@ -190,10 +189,10 @@ public class Grid {
 
         LinkedList<Node> colList = new LinkedList<>();
         for(int i = 1; i <= 9; i++){
-            if (excludeSelf && pos.row == i){
+            if (excludeSelf && pos.getRow() == i){
                 continue;
             }
-            colList.add(grid[i - 1][pos.column - 1]);
+            colList.add(grid[i - 1][pos.getColumn() - 1]);
         }
         return(colList);
     }
@@ -205,16 +204,16 @@ public class Grid {
 
     private LinkedList<Node> getNodesInBlock(Position pos, boolean excludeSelf){
 
-        int startRow = ((pos.row - 1) / 3) * 3 + 1;
+        int startRow = ((pos.getRow() - 1) / 3) * 3 + 1;
         int endRow = startRow + 2;
-        int startColumn = ((pos.column - 1) / 3) * 3 + 1;
+        int startColumn = ((pos.getColumn() - 1) / 3) * 3 + 1;
         int endColumn = startColumn + 2;
 
         LinkedList<Node> nodeList = new LinkedList<>();
 
         for(int row = startRow; row <= endRow; row++){
             for(int column = startColumn; column <= endColumn; column++) {
-                if (excludeSelf && pos.row == row && pos.column == column){
+                if (excludeSelf && pos.getRow() == row && pos.getColumn() == column){
                     continue;
                 }
                 nodeList.add(grid[row - 1][column - 1]);
@@ -245,7 +244,7 @@ public class Grid {
         for(int row = 1; row <= 9; row++){
             for(int col = 1; col <= 9; col++){
                 Node node = grid[row - 1][col - 1];
-                System.out.println(node.position.toString() + " | " + node.toString() + " | " + node.possibleValuesToString());
+                System.out.println(node.getPosition().toString() + " | " + node.toString() + " | " + node.possibleValuesToString());
             }
         }
     }

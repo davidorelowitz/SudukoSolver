@@ -30,7 +30,7 @@
             <!--<execution>-->
             <!--<id>run-java</id>-->
             <!--<phase>package</phase>-->
-            <!--<goals>q-->
+            <!--<goals>-->
               <!--<goal>java</goal>-->
             <!--</goals>-->
           <!--</execution>-->
@@ -51,4 +51,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
 </project>
