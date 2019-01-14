@@ -45,14 +45,13 @@ public class SudukoSolverTest
         assertTrue( gridHelper.compareStringToGrid(strResult, grid) );
     }
 
-    @Ignore("Has an issue - 7 is already in block around 6:9")
     @Test
     public void computerGrid() {
         System.out.println("\n*** Start of test - computerGrid");
         Grid grid = new Grid();
         GridHelper gridHelper= new GridHelper();
-        String str = new String(      "12       "+"9   3  8 "+"    8  26"+"   92 7  "+" 87      "+"   6  8 "+"7 5      "+"  4  5  3"+"     2 67");
-        String strResult = new String("12       "+"9   3  8 "+"    8  26"+"   92 7  "+" 87      "+"   6  8 "+"7 5      "+"  4  5  3"+"     2 67");
+        String str = new String(      "12       "+"9   3  8 "+"    8  26"+"   92 7  "+" 87      "+"   6  8  "+"7 5      "+"  4  5  3"+"     2 67");
+        String strResult = new String("128      "+"9 6 3  8 "+"  3 8  26"+"  192 7  "+" 87      "+"  26  8  "+"7 5      "+"  4  5  3"+"  9  2 67");
         gridHelper.setGrid(str, grid);
         assertTrue( gridHelper.compareStringToGrid(strResult, grid) );
     }
