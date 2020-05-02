@@ -2,9 +2,9 @@ package com.david;
 
 import java.util.LinkedList;
 
-public class Grid {
+class Grid {
 
-    private Node[][] grid;
+    private final Node[][] grid;
     private int numSet;
     private int indent;
 

@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 
 
-public class SudukoSolver {
+class SudukoSolver {
 
     private Grid grid = new Grid();
 

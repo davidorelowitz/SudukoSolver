@@ -1,8 +1,8 @@
 package com.david;
 
-public class GridHelper {
+class GridHelper {
 
-    boolean setGrid(String strLine, Grid grid){
+    void setGrid(String strLine, Grid grid){
         System.out.println (strLine);
 
         char [] buff = strLine.toCharArray();
@@ -13,7 +13,7 @@ public class GridHelper {
             if (ch >= '1' && ch <= '9') {
                 int val = Character.digit(ch, 10);
                 if (!grid.setVal(val, new Position(row, col), null))
-                    return (false);
+                    return;
             }
             col++;
             if (col > 9) {
@@ -21,7 +21,6 @@ public class GridHelper {
                 col = 1;
             }
         }
-        return(true);
     }
 
     boolean compareStringToGrid(String input, Grid grid){

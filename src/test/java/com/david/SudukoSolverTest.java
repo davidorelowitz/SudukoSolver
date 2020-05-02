@@ -55,9 +55,4 @@ public class SudukoSolverTest
         gridHelper.setGrid(str, grid);
         assertTrue( gridHelper.compareStringToGrid(strResult, grid) );
     }
-
-
-
-
-
 }

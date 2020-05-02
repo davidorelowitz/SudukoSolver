@@ -3,10 +3,10 @@ package com.david;
 import java.util.LinkedList;
 
 
-public class Node {
+class Node {
 
 	private int 					value;
-	private Position				position;
+	private final Position				position;
 	private LinkedList<Integer>  	possibleValues  = new LinkedList<>();
 	
 	

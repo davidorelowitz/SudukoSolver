@@ -2,8 +2,8 @@ package com.david;
 
 public class Position {
 
-	private int	row;
-	private int column;
+	private final int	row;
+	private final int column;
 	
 	public Position(int row, int column) {
 		this.row = row;
